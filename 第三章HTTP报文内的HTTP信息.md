@@ -67,9 +67,33 @@
 在`Web`表单文件上传时使用
 
 * **multipart/byteranges**
+
+状态码206（`Partial Content`，部分内容）响应报文包含了多个范围的内容时使用
+
 * **multipart/form-data**
 * **multipart/byteranges**
+
+在`HTTP`报文中使用多部分对象集合时，需要在首部字段里加上`Content-type`。另外，对于多重范围的范围请求，响应会在首部字段`Content-Type`标明`multipart/byteranges`后返回响应报文。
+
+如果服务器无法响应范围请求，则会返回状态码`200 OK`和完整的实体内容。
+
 ## 3.5 获取部分内容的范围请求
+
+执行范围请求时，会用到首部字段`Range`来指定资源的`byte`范围
+
+**5001~10 000字节**
+
+> Range：bytes=5001-10000
+
+**从5001字节之后的全部**
+
+> Range：bytes=5001-
+
+**从一开始到3000字节和5000~7000字节的多重范围**
+
+> Range：bytes=-3000, 5000-7000
+
+针对范围请求，响应会返回状态码为`206 Partial Content`的响应报文。
 ## 3.6 内容协商返回最合适的内容
 
 当浏览器的默认语言为英语或中文，访问相同URI的Web页面时，则会显示对应的英语版或者中文版的Web页面。这样的机制称为内容协商（Content Negotiation）。

@@ -1,0 +1,65 @@
+﻿ table.main {}
+ tr.row {}
+ td.cell {}
+ div.block {}
+ div.paragraph {}
+ .font0 { font:4pt AppleMyungjo; }
+ .font1 { font:5pt AppleMyungjo; }
+ .font2 { font:6pt AppleMyungjo; }
+ .font3 { font:7pt AppleMyungjo; }
+ .font4 { font:8pt AppleMyungjo; }
+ .font5 { font:9pt AppleMyungjo; }
+ .font6 { font:10pt AppleMyungjo; }
+ .font7 { font:11pt AppleMyungjo; }
+ .font8 { font:12pt AppleMyungjo; }
+ .font9 { font:13pt AppleMyungjo; }
+ .font10 { font:14pt AppleMyungjo; }
+ .font11 { font:15pt AppleMyungjo; }
+ .font12 { font:16pt AppleMyungjo; }
+ .font13 { font:17pt AppleMyungjo; }
+ .font14 { font:18pt AppleMyungjo; }
+ .font15 { font:20pt AppleMyungjo; }
+ .font16 { font:21pt AppleMyungjo; }
+ .font17 { font:22pt AppleMyungjo; }
+ .font18 { font:23pt AppleMyungjo; }
+ .font19 { font:24pt AppleMyungjo; }
+ .font20 { font:25pt AppleMyungjo; }
+ .font21 { font:26pt AppleMyungjo; }
+ .font22 { font:27pt AppleMyungjo; }
+ .font23 { font:28pt AppleMyungjo; }
+ .font24 { font:29pt AppleMyungjo; }
+ .font25 { font:30pt AppleMyungjo; }
+ .font26 { font:31pt AppleMyungjo; }
+ .font27 { font:32pt AppleMyungjo; }
+ .font28 { font:40pt AppleMyungjo; }
+ .font29 { font:49pt AppleMyungjo; }
+ .font30 { font:52pt AppleMyungjo; }
+ .font31 { font:56pt AppleMyungjo; }
+ .font32 { font:70pt AppleMyungjo; }
+ .font33 { font:5pt Arial, sans-serif; }
+ .font34 { font:7pt Arial, sans-serif; }
+ .font35 { font:8pt Arial, sans-serif; }
+ .font36 { font:9pt Arial, sans-serif; }
+ .font37 { font:10pt Arial, sans-serif; }
+ .font38 { font:11pt Arial, sans-serif; }
+ .font39 { font:12pt Arial, sans-serif; }
+ .font40 { font:13pt Arial, sans-serif; }
+ .font41 { font:14pt Arial, sans-serif; }
+ .font42 { font:38pt Arial, sans-serif; }
+ .font43 { font:43pt Arial, sans-serif; }
+ .font44 { font:46pt Arial, sans-serif; }
+ .font45 { font:4pt Courier New, monospace; }
+ .font46 { font:6pt Courier New, monospace; }
+ .font47 { font:7pt Courier New, monospace; }
+ .font48 { font:10pt Courier New, monospace; }
+ .font49 { font:11pt Courier New, monospace; }
+ .font50 { font:12pt Courier New, monospace; }
+ .font51 { font:14pt Courier New, monospace; }
+ .font52 { font:15pt Courier New, monospace; }
+ .font53 { font:16pt Courier New, monospace; }
+ .font54 { font:34pt Courier New, monospace; }
+ .font55 { font:36pt Courier New, monospace; }
+ .font56 { font:62pt Courier New, monospace; }
+ .font57 { font:5pt Times New Roman, serif; }
+ .font58 { font:6pt Times New Roman, serif; }
+ .font59 { font:10pt Times New Roman, serif; }
