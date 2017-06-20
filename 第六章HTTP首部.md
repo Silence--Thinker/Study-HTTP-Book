@@ -396,4 +396,110 @@ application/octet-stream, application/zip ...
 
 ## 6.5 响应首部字段
 
-的
+响应首部字段是由服务器端向客户端返回响应报文中所使用的字段，用于补充响应的附加信息、服务器信息，以及对客户端的附加要求等信息。
+
+### 6.5.1 Accept-Ranges
+
+> Accept-Ranges: bytes
+
+首部字段Accept-Ranges是用来告知客户端服务器是否能处理范围请求，以指定获取服务器端某个部分的资源。
+
+### 6.5.2 Age
+
+> Age: 600
+
+首部字段`Age`能告知客户端，源服务器在多久前创建了响应。字段值的单位为秒。
+
+若创建该响应的服务器是缓存服务器，Age值是指缓存后的响应再次发起认证到认证完成的时间值。代理创建响应时必须加上首部字段`Age`。
+
+### 6.5.3 ETag
+
+> ETag: "34e544327886546ce7676aff67678acd67"
+
+首部字段`ETag`能告知客户端实体标识。它是一种可将资源以字符串形式做*唯一性标识*的方式。服务器会为每份资源分配对应的`ETag`。
+
+**强ETag值和弱Tag值**
+
+强ETag值
+
+强ETag值，不论实体发生多么细微的变化都会改变其值。
+
+> ETag: "usagi-1234"
+
+弱ETag值
+
+弱ETag值只用于提示资源是否相同。只有资源发生了根本改变，产生差异时才会改变ETag值。这时，会在字段值最开始处附加W/。
+
+> ETag: W/"usagi-1234n
+
+### 6.5.4 Location
+
+> Location: http://www.usagidesign.jp/sample.html
+
+使用首部字段`Location`可以将响应接收方引导至某个与请求URI位置不同的资源。
+
+基本上，该字段会配合`3xx: Redirection`的响应，提供重定向的。
+
+### 6.5.5 Proxy-Authenticate
+
+> Proxy-Authenticate: Basic realm = "UsagidesignAuth"
+
+首部字段Proxy-Authenticate会把由代理服务器所要求的认证信息发送给客户端。
+
+### 6.5.6 Retry-After
+
+> Retry-After: 120
+
+首部字段`Retry-After`告知客户端应该在多久之后再次发送请求。主要配合状态码`503 Service Unavailable`响应，或`3xx Redirect`响应一起使用。
+
+### 6.5.7 Server
+
+> Server: Apache/2.2.6 (Unix) PHP/5.2.5
+
+首部字段Server告知客户端当前服务器上安装的HTTP服务器应用程序的信息。不单单会标出服务器上的软件应用名称，还有可能包括版本号和安装时启用的可选项。
+
+### 6.5.8 Vary
+
+> Vary: Accept-Language
+
+首部字段`Vary`可对缓存进行控制。源服务器会向代理服务器传达关于本地缓存使用方法的命令。
+
+### 6.5.9 WWW-Authenticate
+
+> WWW-Authentic ate: Basic realm= "Usagidesign Auth"
+
+首部字段`WWW-Authenticate`用于HTTP访问认证。它会告知客户端适用于访问请求URI所指定资源的认证方案（`Basic`或是`Digest`)和带参数提示的质询（`challenge`)。状态码4`01 Unauthorized`响应中，肯定带有首部字段`WWW-Authenticate`。
+
+## 6.6 实体首部字段
+
+实体首部字段是包含在请求报文和响应报文中的实体部分所使用的首部，用于补充内容的更新时间等与实体相关的信息。
+
+### 6.6.1 Allow
+
+> Allow: GET, HEAD
+
+首部字段`Allow`用于通知客户端能够支持`Request-URI`指定资源的所有HTTP方法。当服务器接收到不支持的HTTP方法时，会以状态码`405 Method Not Allowed`作为响应返回。与此同时，还会把所有能支持的`HTTP`方法写入首部字段`Allow`后返回。
+
+### 6.6.2 Content-Encoding
+
+> Content-Encoding: gzip
+
+首部字段`Content-Encoding`会告知客户端服务器对实体的主体部分选用的内容编码方式。内容编码是指在不丢失实体信息的前提下所进行的压缩。
+
+主要采用以下4种内容编码的方式。
+
+* gzip
+* compress
+* deflate
+* identity
+
+### 6.6.3 Content-Language
+
+> Content-Language: zh-CN
+
+首部字段Content-Language会告知客户端，实体主体使用的自然语言(指中文或英文等语言）。
+
+### 6.6.4 Content-Length
+
+### 6.6.5 Content-Location
+
