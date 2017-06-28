@@ -501,5 +501,130 @@ application/octet-stream, application/zip ...
 
 ### 6.6.4 Content-Length
 
+> Content- Length: 15000
+
+首部字段`Content-Length`表明了实体主体部分的大小（单位是字节）。对实体主体进行内容编码传输时，不能再使用`Content-Length`首部字段。由于实体主体大小的计算方法略微复杂，所以在此不再展开。读者若想一探究竟，可参考`RFC2616`的4.4。
+
 ### 6.6.5 Content-Location
+
+> Content-Location: http://www.hackr.jp/index-ja.html
+
+首部字段`Content-Location`给出与报文主体部分相对应的`URI`和首部字段`Location`不同，`Content-Location`表示的是报文主体返回资源对应的`URI`。
+
+### 6.6.6 Content-MD5
+
+> Content-MD5: 0GFkZDUwNGVhNGY3N2MxMDIwZmQ4NTBmY2IyTY==
+
+首部字段Content-MD5是一串由MD5算法生成的值，其目的在于检查报文主体在传输过程中是否保持完整，以及确认传输到达。
+
+### 6.6.7 Content-Range
+
+> Content-Range: bytes 5001-10000/10000
+
+针对范围请求，返回响应时使用的首部字段`Content-Range`，能告知客户端作为响应返回的实体的哪个部分符合范围请求。字段值以字节为单位，表示当前发送部分及整个实体大小。
+
+### 6.6.8 Content-Type
+
+> Content-Type: text/html; charset=UTF-8
+
+首部字段`Content-Type`说明了实体主体内对象的媒体类型。和首部字段Accept —样，字蠢值用`type/subtype`形式赋值。
+
+### 6.6.9 Expires
+
+> Expires: Wed, 04 Dul 2012 08:26:05 GMT
+
+首部字段`Expires`会将资源失效的日期告知客户端。缓存服务器在接收到含有首部字段`Expires`的响应后，会以缓存来应答请求，在`Expires`字段值指定的时间之前，响应的副本会一直被保卷。当超过指定的时间后，缓存服务器在请求发送过来时，会转向源服务器请求资源。
+
+### 6.6.10 Last-Modified
+
+> Last-Modified: Wed, 23 May 2012 09:59:55 GMT
+
+首部字段`Last-Modified`指明资源最终修改的时间。一般来说，这个值就是`Request-URI`指定资源被修改的时间。但类似使用CGI脚本进行动态数据处理时，该值有可能会变成数据最终修改时的时间。
+
+## 6.7 为Cookie 服务的首部字段
+
+至2013年5月，Cookie的规格标准文档有以下4种。
+
+**网景公司颁布的规格标准**
+
+**RFC2109**
+
+**RFC2965**
+
+**RFC6265**
+
+**Cookie**服务的首部字段
+
+|首部字段名	  |说明		|首部类型|
+|:--		  |:--		|:--|
+|Set-Cookie |开始状态管理所使用的Cookie信息 |响应首部字段 |
+| Cookie	  | 服务器接收到的Cookie信息 |请求首部字段|
+
+### 6.7.1 Set-Cookie
+
+> Set-Cookie: status=enable; expires=Tue, 05 Dul 2011 07:26:31
+
+当服务器准备开始管理客户端的状态时，会事先告知各种信息。
+
+**expires**属性
+
+Cookie的expires属性指定浏览器可发送Cookie的有效期。
+
+**path**属性
+
+Cookie的path属性可用于限制指定Cookie的发送范围的文件目录。不过另有办法可避开这项限制，看来对其作为安全机制的效果不能抱有期待。
+
+**domain**属性
+
+通过Cookie的domain属性指定的域名可做到与结尾匹配一致。比如，当指定`example.com`后，除example.com以外，`www.example.com`或`www2.example.com`等都可以发送Cookie。
+
+**secure**属性
+
+Cookie的secure属性用于限制Web页面仅在HTTPS安全连接时，才可以发送Cookie。
+
+> Set-Cookie: name=value; secure
+
+**HttpOnly**属性
+
+`Cookie`的`HttpOnly`属性是`Cookie`的扩展功會泛，它使`JavaScript`脚本无法获得`Cookie`。其主要目的为防止跨站脚本攻击（`Cross-sitescripting`，`XSS`)对`Cookie`的信息窃取。
+
+### 6.7.2 Cookie
+
+> Cookie: status=enable
+
+首部字段`Cookie`会告知服务器，当客户端想获得HTTP状态管理支持时，就会在请求中包含从服务器接收到的`Cookie`。接收到多个`Cookie`时，同样可以以多个`Cookie`形式发送。
+
+## 6.8 其他首部字段
+
+HTTP首部字段是可以自行扩展的。所以在Web服务器和浏览器的应用上，会出现各种非标准的首部字段。
+
+* **X-Frame-Options**
+* **X-XSS-Protection**
+* **DNT**
+* **P3P**
+
+### 6.8.1 X-Frame-Options
+
+> X-Frame-Options: DENY
+
+首部字段`X-Frame-Options`属于`HTTP`响应首部，用于控制网站内容在其他`Web`网站的`Frame`标签内的显示问题。其主要目的是为了防止点击劫持（`clickjacking`)攻击。
+
+### 6.8.2 X-XSS-Protection
+
+> X-XSS-Protection: 1
+
+首部字段`X-XSS-Protection`属于`HTTP`响应首部，它是针对跨站脚本攻击（`XSS`)的一种对策，用于控制浏览器`XSS`防护机制的开关。
+
+### 6.8.2 DNT
+
+> DNT: 1
+
+首部字段`DNT`属于`HTTP`请求首部，其中`DNT`是`Do Not Track`的简称，意为拒绝个人信息被收集，是表不拒绝被精准广告追踪的一种方法。
+
+### 6.8.2 P3P
+
+> P3P: CP="CAO DSP LAW CURa ADMa DEVa TAIa PSAa PSDa IVAa IVDe
+
+首部字段`P3P`属于`HTTP`响应首部，通过利用`P3P` (The `Platform for Privacy Preferences`，在线隐私偏好平台）技术，可以让Web网站上的个人隐私变成一种仅供程序可理解的形式，以达到保护用户隐私的目的。
+
 
